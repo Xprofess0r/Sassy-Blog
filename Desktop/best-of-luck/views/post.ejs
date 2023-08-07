@@ -1,0 +1,71 @@
+<h4><%= data.Username %></h4>
+<h1><%= data.title %></h1>
+<article class="article">
+<h3><%= data.body %></h3>
+</article>
+
+
+  <button id="like-button" class="like-button" >
+    <img src="/img/like.png" alt="like button">
+  </button>
+  
+  <button id="dislike-button" class="dislike-button">
+    <img src="/img/dislike.png" alt="dislike button">
+  </button>
+  
+  <!-- Display the current like count -->
+  <span id="countlike" class="countlike">
+    Liked by <%= data.Username %> and <span><% data.username %></span> <span id="like-count"><%= data.likes %></span> others
+  </span>
+  
+  <!-- Add JavaScript code to handle Like and Dislike clicks -->
+  <script>
+    document.getElementById("like-button").addEventListener("click", handleLike);
+    document.getElementById("dislike-button").addEventListener("click", handleDislike);
+
+    async function handleLike() {
+      try {
+        const postId = '<%= data._id %>'; 
+        const response = await fetch(`/like-post/${postId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error('Failed to update likes.');
+        }
+  
+        const updatedPost = await response.json();
+        const likeCountElement = document.getElementById('like-count');
+        likeCountElement.textContent = updatedPost.likes;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    
+  async function handleDislike() {
+    try {
+      const postId = '<%= data._id %>'; // Replace this with the post ID from your template
+      const response = await fetch(`/unlike-post/${postId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to update dislikes.');
+      }
+
+      const updatedPost = await response.json();
+      const likeCountElement = document.getElementById('like-count');
+      likeCountElement.textContent = updatedPost.likes;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  </script>
+

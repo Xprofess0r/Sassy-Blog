@@ -1,0 +1,12 @@
+<a href="/">&larr; Back</a>
+<div class="admin-title">
+  <h2>View / Edit Post</h2>
+
+  <form action="/unlike-post/<%= data._id %>?_method=PUT" method="POST">
+    <!-- Include the CSRF token for security -->
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="submit" value="Like" class="btn-delete btn">
+    <% data.likes %> Likes
+  </form>
+
+</div>

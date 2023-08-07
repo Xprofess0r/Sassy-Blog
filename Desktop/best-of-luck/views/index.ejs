@@ -1,0 +1,47 @@
+<div class="author">
+    <h1 class="author__heading">Hi, I am Shashi.</h1>
+    <p class="author__body">Web developer and content creator.</p>
+  </div>
+  
+  <img src="/img/hero-image.jpg" alt="person looking out through window" class="hero-image" width="581" height="328">
+  
+  <section class="articles">
+    <h2 class="articles__heading">Latest Posts</h2>
+  
+    <ul class="article-ul">
+      <% data.forEach(post => { %>
+        <li>
+          <a href="/post/<%= post._id %>">
+            <span><%= post.Username %></span>
+            <span><%= post.title %></span>
+            <span class="article-list__date"><%= post.createdAt %></span>
+          
+        
+          </a>
+
+          <button id="like-button" class="like-button" >
+            <img src="/img/like.png" alt="like button">
+          </button>
+          
+          <button id="dislike-button" class="dislike-button">
+            <img src="/img/dislike.png" alt="dislike button">
+          </button>
+          <br>
+          <span class="countlike">Liked by <%= post.likes %> people</span>
+        </li>
+       
+      <% }) %>
+    </ul>
+  
+ 
+    <% if (nextPage !== null) { %>
+      <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+    <% } %>
+   
+  
+  
+    
+  
+  
+  
+  </section>

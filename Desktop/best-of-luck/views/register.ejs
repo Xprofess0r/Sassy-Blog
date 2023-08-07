@@ -1,0 +1,63 @@
+<h3>Sign Up</h3>
+<div class="signUp">
+  <form action="/register" method="POST">
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="phoneNumberInput"><b>Phone Number =></b></label>
+    
+    <input type="number" id="phoneNumberInput" name="PhoneNo" placeholder="Phone number" required>
+     <br>
+     <br>
+     
+    <label for="emailInput"><b>Email Id</b></label>
+    <input type="email" id="emailInput" name="Email" placeholder="Email ID" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <label for="DOB"><b>Date Of Birth</b></label>
+    <br>
+    <br>
+    <input type="number" placeholder="1" id="dateInput" name="DOB" min="1" max="31" required>
+
+    <br>
+    <br>
+    <select id="monthInput" name="DOB" required>
+        <option value="01">January</option>
+        <option value="02">February</option>
+        <option value="03">March</option>
+        <option value="04">April</option>
+        <option value="05">May</option>
+        <option value="06">June</option>
+        <option value="07">July</option>
+        <option value="08">August</option>
+        <option value="09">September</option>
+        <option value="10">October</option>
+        <option value="11">November</option>
+        <option value="12">December</option>
+    </select>
+    <input type="number" placeholder="2023" id="yearInput" name="DOB" min="1900" max="2023" required>
+    <br>
+    <br>
+    <label><b>Gender</b></label>
+    <div>
+      <label for="male">Male</label>
+      <input type="radio" id="male" name="Gender" value="male" required>
+      <label for="female">Female</label>
+      <input type="radio" id="female" name="Gender" value="female" required>
+      <label for="custom">Custom</label>
+      <input type="radio" id="custom" name="Gender" value="custom" required>
+    </div>
+
+    <p>
+      We secure our customer's data by performing these - Data Encryption, Access Control and Authentication,
+      Regular Security Audits and Testing, Regular Software Updates, etc.
+      We specially take care of our customers' privacy.
+      <br />
+      By clicking , you agree to our <span>terms</span>, <span>Privacy Policy</span>, and <span>cookies Policy</span>.
+    </p>
+
+    <input type="submit" value="Register" class="btn register">
+  </form>
+</div>

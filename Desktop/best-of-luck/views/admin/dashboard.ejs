@@ -1,0 +1,85 @@
+<div class="admin-title">
+    <h2>Posts</h2>
+    <a href="/add-post" class="button">+ Add New</a>
+  </div>
+  
+  <ul class="admin-posts">
+  
+    <% data.forEach(post => { %>
+     
+      <li>
+        <a href="/post/<%= post._id %>">
+          <%= post.Username %> &nearr;
+          <%= post.title %> &nearr;
+        </a>
+        <div class="admin-post-controls">
+          <a href="/edit-post/<%= post._id %>" class="btn">Edit</a>
+  
+          <form action="/delete-post/<%= post._id %>?_method=DELETE" method="POST">
+            <input type="submit" value="Delete" class="btn-delete btn">
+          </form>
+  
+        </div>
+         
+       
+      </li>
+    <% }) %>
+  </ul>
+    
+
+  
+  
+  <script>
+    function handleLike(postId) {
+      // Perform a POST request to the server to like the post
+      fetch(`/like-post/${postId}`, {
+        method: 'POST',
+        credentials: 'same-origin', // Include credentials (cookies) in the request
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Update the displayed like count
+          const countLikeSpan = document.getElementById(`countlike_${postId}`);
+          countLikeSpan.textContent = `Liked by ${data.likes} people`;
+  
+          // Disable the like button after liking the post
+          const likeButton = document.getElementById(`like_${postId}`);
+          likeButton.disabled = true;
+        })
+        .catch(error => {
+          console.error('Error liking the post:', error);
+        });
+    }
+  
+    function handleunlike(postId) {
+      // Perform a POST request to the server to unlike the post
+      fetch(`/unlike-post/${postId}`, {
+        method: 'POST',
+        credentials: 'same-origin', // Include credentials (cookies) in the request
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          // Update the displayed like count
+          const countLikeSpan = document.getElementById(`countlike_${postId}`);
+          countLikeSpan.textContent = `Liked by ${data.likes} people`;
+  
+          // Re-enable the like button after unliking the post
+          const likeButton = document.getElementById(`like_${postId}`);
+          likeButton.disabled = false;
+        })
+        .catch(error => {
+          console.error('Error unliking the post:', error);
+        });
+    }
+  </script>
+  
+  
+  
+  
+  
